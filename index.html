@@ -681,7 +681,32 @@
         </div>
     </section>
 
-<script>// 1. 获取所有的标签按钮和作品盒子
+<script>
+    // 强行延迟 0.5 秒执行，等页面所有元素和样式彻底加载完
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        // 1. 尝试寻找带有“剧情”文字的按钮
+        const buttons = document.querySelectorAll('button, .tab-button, .category-btn');
+        let dramaButton = null;
+        
+        buttons.forEach(btn => {
+            if (btn.textContent.includes('剧情')) {
+                dramaButton = btn;
+            }
+        });
+
+        // 2. 如果找到了，就自动点一下它
+        if (dramaButton) {
+            dramaButton.click();
+            console.log("已自动触发剧情片分类点击");
+        } else {
+            // 3. 备用方案：如果没有“剧情”按钮，就自动点第一个按钮
+            const firstButton = document.querySelector('button');
+            if (firstButton) firstButton.click();
+        }
+    }, 500); // 500毫秒 = 0.5秒
+});
+// 1. 获取所有的标签按钮和作品盒子
     const tabs = document.querySelectorAll('.tab-btn');
     const groups = document.querySelectorAll('.portfolio-group');
 
@@ -788,6 +813,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
         }
     });
 });
+
 </script>
 
     </body>
