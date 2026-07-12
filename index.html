@@ -5,128 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人作品集 Portfolio</title>
     <style>
-        
-        /* 剧本卡片外壳 */
-        .script-card {
-            max-width: 900px;
-            margin: 0 auto 30px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* 预览卡封面（点击区域） */
-        .script-cover {
-            padding: 40px;
-            cursor: pointer;
-            list-style: none; /* 隐藏浏览器自带的黑色小三角 */
-            outline: none;
-            position: relative;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
-            transition: background 0.3s ease;
-        }
-
-        /* 隐藏 Safari 浏览器自带的 summary 三角 */
-        .script-cover::-webkit-details-marker {
-            display: none;
-        }
-
-        .script-cover:hover {
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        /* 剧本标签（如：院线长片） */
-        .script-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: #e2e8f0;
-            margin-bottom: 16px;
-        }
-
-        .script-title {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 15px;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* 剧本主题一句话概括的样式（突出显示） */
-        .script-theme {
-            font-size: 1.15rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-            font-style: italic; /* 斜体让它更有台词感/主题感 */
-            max-width: 800px;
-        }
-
-        /* 提示点击的文字 */
-        .expand-hint {
-            margin-top: 25px;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
-            text-align: right;
-            transition: color 0.3s;
-        }
-        .script-cover:hover .expand-hint {
-            color: #fff; /* 鼠标悬停时提示字变亮 */
-        }
-
-        /* 当卡片被点击展开后，改变提示文字方向 */
-        details[open] .expand-hint {
-            display: none; /* 展开后隐藏点击提示 */
-        }
-
-        /* 展开后的详细文本区域 */
-        .script-detail {
-            padding: 40px;
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            animation: fadeIn 0.5s ease; /* 优雅的展开淡入动画 */
-        }
-
-        .script-detail h4 {
-            color: #fff;
-            font-size: 1.2rem;
-            margin: 30px 0 15px;
-            border-left: 3px solid #fff;
-            padding-left: 10px;
-        }
-        .script-detail h4:first-child {
-            margin-top: 0;
-        }
-
-        .script-detail p {
-            color: #94a3b8;
-            line-height: 1.8;
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        /* 标准正规剧本的正文排版 */
-        .script-text {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 30px;
-            border-radius: 8px;
-            font-family: "Courier New", Courier, monospace, "SimSun"; /* 电影剧本专用等宽字体 */
-            color: #e2e8f0;
-            line-height: 2;
-            white-space: pre-line; /* 保持代码中的换行格式 */
-            border: 1px dashed rgba(255,255,255,0.1);
-        }
-
-        /* 展开动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .portfolio-group.hide {
-    display: none !important;
-}
         /* 全局样式与黑银渐变磨砂背景 */
         * {
             margin: 0;
@@ -134,10 +12,11 @@
             box-sizing: border-box;
         }
         
-       body {
-            background: #0f0f11 url('images/基色.jpg') no-repeat center center;
-            background-attachment: scroll;
-            background-size: 100% auto;    
+        body {
+            /* 💡 背景图文件名已更新为 background.jpg */
+            background: #0f0f11 url('images/background.jpg') no-repeat center center;
+            background-attachment: fixed; 
+            background-size: cover;       
             color: #e2e8f0;
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             min-height: 100vh;
@@ -174,22 +53,100 @@
 
         header a:hover { color: #ffffff; }
 
-        /* 首页首屏 */
+        /* ================= 首页首屏全新升级（参考图电影感排版） ================= */
         .hero-section {
             height: 100vh;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between; /* 撑开上下的文字与底部图片 */
             align-items: center;
             text-align: center;
+            padding-top: 25vh; /* 将文字整体往下推一点，视觉更舒适 */
+            position: relative;
+            overflow: hidden; /* 防止底部倾斜的图片切边产生网页滚动条 */
         }
 
-        .hero-section h1 { font-size: 2.8rem; margin-bottom: 15px; color: #fff; }
-        .hero-section .subtitle { font-size: 1.2rem; color: #94a3b8; letter-spacing: 4px; margin-bottom: 40px; }
-        .hero-section .bio-tags { font-size: 1rem; padding: 10px 20px; border-radius: 20px; }
+        /* 核心大标题 */
+        .hero-section h1 { 
+            font-size: 3.5rem; 
+            font-weight: 700;
+            margin-bottom: 20px; 
+            color: #ffffff; /* 纯白主字 */
+            letter-spacing: -0.5px;
+        }
 
+        /* 副标题 */
+        .hero-section .subtitle { 
+            font-size: 1.1rem; 
+            color: rgba(255, 255, 255, 0.6); /* 半透明高级白 */
+            letter-spacing: 1px; 
+            margin-bottom: 35px; 
+        }
+
+        /* 呼吁行动按钮（对应图中的 View Collections） */
+        .hero-btn {
+            background: #ffffff;
+            color: #0f0f11;
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid transparent;
+        }
+        .hero-btn:hover {
+            background: transparent;
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+    /* ================= 底部卡片撑满与去黑边优化 ================= */
+        .hero-cards-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 420px;     
+            margin-top: 20px;
+            margin-bottom: 0;  
+        }
+
+        .hero-mock-card {
+            position: absolute;
+            bottom: -50px;     
+            left: 50%;
+            width: 220px;      
+            aspect-ratio: 3/4; 
+            border-radius: 16px; 
+            background: #1e1e22;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), bottom 0.3s ease;
+        }
+
+        .hero-mock-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 彻底干掉黑边 */
+        }
+
+        .hero-mock-card:hover {
+            bottom: -15px; 
+            z-index: 50 !important;
+        }
+
+        .card-1 { transform: translateX(-360px) rotate(-16deg); z-index: 1; }
+        .card-2 { transform: translateX(-190px) rotate(-8deg);  z-index: 2; }
+        .card-3 { transform: translateX(-50%) rotate(0deg);     z-index: 3; left: 50%; } 
+        .card-4 { transform: translateX(50px) rotate(8deg);      z-index: 2; }
+        .card-5 { transform: translateX(220px) rotate(16deg);   z-index: 1; }
+
+       
         /* 关于我 */
-    .about-section {
+        .about-section {
             max-width: 1200px; 
             margin: 0 auto;
             padding: 100px 20px;
@@ -229,10 +186,6 @@
             line-height: 1.8;
             text-align: justify;
         }
-        .about-image { flex: 1; border-radius: 12px; overflow: hidden; }
-        .about-image img { width: 100%; display: block; }
-        .about-content { flex: 1.2; }
-        .about-content h2 { font-size: 2rem; color: #ffffff; margin-bottom: 20px; }
 
         /* 作品集分类导航 */
         .portfolio-nav {
@@ -258,30 +211,25 @@
 
         .tab-btn.active, .tab-btn:hover { color: #ffffff; background: rgba(255,255,255,0.1); }
 
-        /* =================================================== */
-        /* 新增：摄影作品横向滚窗样式 (Photography Slider) */
-        /* =================================================== */
-        .photo-section {
-            max-width: 1200px;
-            margin: 0 auto 100px;
-            padding: 0 20px;
+        .portfolio-group.hide {
+            display: none !important;
         }
 
-       .photo-section {
-            max-width: 100%; /* 改为100%全宽，方便算居中 */
+        /* 摄影作品带箭头滑动样式 */
+        .photo-slider-wrapper {
+            position: relative; 
+            max-width: 1200px;
             margin: 0 auto 100px;
-            padding: 0;
+            padding: 0 50px; 
         }
 
         .slider-container {
             width: 100%;
-            height: 500px; /* 💡 稍微收拢一点滑窗整体高度，把空间让出来 */
+            height: 500px; 
             display: flex;
             overflow-x: auto; 
             align-items: center;
             gap: 20px; 
-            /* 💡 关键修改：把上下的内边距从 30px 缩减到 0，图片就会自然往上提了 */
-            padding: 0 50vw; 
             scroll-behavior: smooth;
         }
 
@@ -291,28 +239,13 @@
 
         .slide-item {
             flex: 0 0 auto; 
-            height: 420px; /* 💡 基础图片高度调为 420px */
+            height: 420px; 
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 16px;
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease; 
-            transform: scale(0.85); /* 默认没到中间的图片依然保持 0.85 */
-            filter: opacity(0.4); /* 没到中间的图片稍微暗一点，衬托中间那张 */
-        }
-
-        /* 💡 核心：当带有 active 类时才放大，这里就是第一张一亮相就放大的秘密 */
-        .slide-item.active {
-            transform: scale(1.05); /* 放大到 1.05 倍，配合 420px 基础高度，放大后刚好非常饱满 */
-            filter: opacity(1); 
-            z-index: 10;
-        }
-
-        /* 💡 专门给处于正中间的图片加的特殊类名 */
-        .slide-item.active {
-            transform: scale(1.1); /* 正中间的图片放大到 1.1 倍 */
-            filter: opacity(1); /* 恢复全透明度 */
-            z-index: 10;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         .slide-item img {
@@ -320,18 +253,140 @@
             width: auto;
             object-fit: contain; 
             border-radius: 12px;
-            /* 💡 增加具有呼吸感的、更写实的层级立体阴影 */
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
-                        0 5px 15px rgba(0, 0, 0, 0.4);
         }
-        /* 💡 强行隐藏翻书画廊的丑陋滚动条 */
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s;
+            user-select: none;
+        }
+        .slider-arrow:hover {
+            background: rgba(255, 255, 255, 0.25);
+            scale: 1.05;
+        }
+        .arrow-left { left: -5px; }
+        .arrow-right { right: -5px; }
+
         .font-book-slider::-webkit-scrollbar {
             display: none !important;
             width: 0 !important;
             height: 0 !important;
         }
         .font-book-slider {
-            scrollbar-width: none !important; /* 兼容火狐 */
+            scrollbar-width: none !important; 
+        }
+
+        /* 剧本基本卡片外壳 */
+        .script-card {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .script-cover {
+            padding: 40px;
+            cursor: pointer;
+            list-style: none; 
+            outline: none;
+            position: relative;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+            transition: background 0.3s ease;
+        }
+
+        .script-cover::-webkit-details-marker { display: none; }
+        .script-cover:hover { background: rgba(255, 255, 255, 0.08); }
+
+        .script-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            margin-bottom: 16px;
+        }
+
+        .script-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .script-theme {
+            font-size: 1.15rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            font-style: italic; 
+            max-width: 800px;
+        }
+
+        .expand-hint {
+            margin-top: 25px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: right;
+            transition: color 0.3s;
+        }
+        .script-cover:hover .expand-hint { color: #fff; }
+        details[open] .expand-hint { display: none; }
+
+        .script-detail {
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 0.5s ease; 
+        }
+
+        .script-detail h4 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin: 30px 0 15px;
+            border-left: 3px solid #fff;
+            padding-left: 10px;
+        }
+        .script-detail h4:first-child { margin-top: 0; }
+
+        .script-detail p {
+            color: #94a3b8;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .script-text {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 30px;
+            border-radius: 8px;
+            font-family: "Courier New", Courier, monospace, "SimSun"; 
+            color: #e2e8f0;
+            line-height: 2;
+            white-space: pre-line; 
+            border: 1px dashed rgba(255,255,255,0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -345,15 +400,37 @@
         </nav>
     </header>
 
-    <section id="home" class="hero-section">
-        <h1>把故事，变成值得被观看的作品。</h1>
-        <p class="subtitle">Content First. Story Always.</p>
-        <div class="bio-tags frosted-glass">内容创作者 ｜ 综艺编导 ｜ AIGC 创新实践者</div>
-    </section>
+    <section class="hero-section">
+    
+    <div class="hero-text-wrapper">
+        <h1>Crafting stories <br>into moments worth watching.</h1>
+        <p class="subtitle">Content Creator | Variety Show Director | AIGC Innovation Practitioner</p>
+        <a href="#portfolio-content" class="hero-btn">View Collections</a>
+    </div>
+
+    <div class="hero-cards-container">
+        <div class="hero-mock-card card-1">
+            <img src="images/photo1.jpg" alt="作品预览1">
+        </div>
+        <div class="hero-mock-card card-2">
+            <img src="images/photo2.jpg" alt="作品预览2">
+        </div>
+        <div class="hero-mock-card card-3">
+            <img src="images/photo5.jpg" alt="作品预览3">
+        </div>
+        <div class="hero-mock-card card-4">
+            <img src="images/photo6.jpg" alt="作品预览4">
+        </div>
+        <div class="hero-mock-card card-5">
+            <img src="images/photo7.jpg" alt="作品预览5">
+        </div>
+    </div>
+
+</section>
 
     <section id="about" class="about-section">
         <div class="about-image">
-            <img src="images/about me.JPG" alt="About Me">
+            <img src="images/about me.jpg" alt="About Me">
         </div>
         <div class="about-content">
             <h2>About Me</h2>
@@ -362,459 +439,401 @@
     </section>
 
     <section id="portfolio">
-    <div class="portfolio-nav frosted-glass">
-        <button class="tab-btn active" data-target="short-film">短片作品</button>
-        <button class="tab-btn" data-target="aigc">AIGC作品</button>
-        <button class="tab-btn" data-target="photography">摄影作品</button>
-        <button class="tab-btn" data-target="script">剧本与策划</button>
-    </div>
+        <div class="portfolio-nav frosted-glass">
+            <button class="tab-btn active" data-target="short-film">短片作品</button>
+            <button class="tab-btn" data-target="aigc">AIGC作品</button>
+            <button class="tab-btn" data-target="operation">账号运营</button>
+            <button class="tab-btn" data-target="photography">摄影作品</button>
+            <button class="tab-btn" data-target="script">剧本与策划</button>
+        </div>
 
-   <div class="sub-nav short-film-sub" style="text-align: center; margin: -10px auto 30px; display: flex; justify-content: center; gap: 15px;">
-    <button class="sub-tab-btn active" data-sub-target="drama" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; cursor: pointer;">剧情片</button>
-    <button class="sub-tab-btn" data-sub-target="documentary" style="background: transparent; color: #aaa; border: 1px solid rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; cursor: pointer;">纪录片</button>
-    <button class="sub-tab-btn" data-sub-target="commercial" style="background: transparent; color: #aaa; border: 1px solid rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; cursor: pointer;">广告片</button>
+        <div class="sub-nav short-film-sub" style="text-align: center; margin: -10px auto 30px; display: flex; justify-content: center; gap: 15px;">
+            <button class="sub-tab-btn active" data-sub-target="drama" style="background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 5px 15px; border-radius: 20px; cursor: pointer;">剧情片</button>
+            <button class="sub-tab-btn" data-sub-target="documentary" style="background: transparent; color: #aaa; border: 1px solid rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; cursor: pointer;">纪录片</button>
+            <button class="sub-tab-btn" data-sub-target="commercial" style="background: transparent; color: #aaa; border: 1px solid rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px; cursor: pointer;">广告片</button>
+        </div>
+
+        <div class="portfolio-container" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
+            
+            <div class="portfolio-group short-film drama" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《房间》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116380879815419&bvid=BV1JbQPB6EpY&cid=37397070099&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div> 
+
+            <div class="portfolio-group short-film drama" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《Layers of Fear》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114161421911445&bvid=BV1vsQkY7E5E&cid=28866053592&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group short-film drama" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《直球男神的秘密》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115808860701247&bvid=BV19wvvBrE6h&cid=35082340133&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group short-film documentary hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《耕新》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116712213055430&bvid=BV1TzEK61EuW&cid=38946800371&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group short-film documentary hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《小城记忆》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114161421910202&bvid=BV1vsQkY7EtX&cid=28866121380&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group short-film documentary hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《簪花围》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114161405134055&bvid=BV1exQkY2Exd&cid=28865856157&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group short-film documentary hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《大地丹青》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115730309710485&bvid=BV1sdqeBYEQ4&cid=34783166846&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group short-film commercial hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《可心柔》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115730326488112&bvid=BV1xRqeBPEgJ&cid=34783167933&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group aigc hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">AIGC MV：《DELULU》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116874280961102&bvid=BV1u3Td6ZEGk&cid=39713050502&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+
+            <div class="portfolio-group aigc hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《oc》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116712263387814&bvid=BV1WPEK6zEJA&cid=38947127703&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+        
+            <div class="portfolio-group aigc hide" style="margin-bottom: 60px;">
+                <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《multiverse》</h3>
+                <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116712263386673&bvid=BV1WPEK6zEzv&cid=38946998344&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+                </div>
+            </div>
+    <div class="portfolio-group operation hide">
+    <div class="account-card frosted-glass" style="max-width: 1000px; margin: 0 auto 40px; padding: 40px; border-radius: 20px;">
+        
+        <div class="account-meta-wrapper" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 35px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 25px;">
+            
+            <div style="flex: 1;">
+                <h4 style="font-size: 1.8rem; color: #fff; font-weight: 600; margin-bottom: 12px; letter-spacing: 0.5px;">Klinko AI <span style="font-size: 0.9rem; color: #64748b; font-weight: normal; margin-left: 8px;">(现已改名)</span></h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <span style="background: rgba(255, 75, 75, 0.15); color: #ff4b4b; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 500;">小红书</span>
+                    <span style="background: rgba(255,255,255,0.08); color: #cbd5e1; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem;">粉丝量：3,674</span>
+                </div>
+            </div>
+
+            <div style="flex: 1.8; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 25px;">
+                <h5 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px; font-weight: 500; letter-spacing: 1px;">运营策略与成果</h5>
+                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7; text-align: justify; margin: 0;">负责账号的整体定位、选题孵化及脚本撰写。通过优化前3秒吸睛点与粉丝互动策略，实现粉丝稳步增长，成功产出多支高互动量的爆款视频。<span style="color: rgba(255,255,255,0.3); font-size: 0.85rem; display: block; margin-top: 4px;">🔍 双击下方图片可放大查看详情</span></p>
+            </div>
+        </div>
+
+        <div class="account-images-row" style="display: flex; gap: 16px; width: 100; justify-content: space-between;">
+            <div class="zoomable-thumb" style="flex: 1; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s;"><img src="images/aaccount-preview1.jpg" alt="作品" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div class="zoomable-thumb" style="flex: 1; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s;"><img src="images/aaccount-preview2.jpg" alt="作品" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div class="zoomable-thumb" style="flex: 1; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s;"><img src="images/aaccount-preview3.jpg" alt="作品" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div class="zoomable-thumb" style="flex: 1; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s;"><img src="images/aaccount-preview4.jpg" alt="作品" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        </div>
+    </div>
+    
+    <div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; cursor: zoom-out;"><img id="modalImg" style="max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5); object-fit: contain;"></div>
+     <div class="portfolio-group operation hide">
+    <div class="account-card frosted-glass" style="max-width: 1000px; margin: 0 auto 40px; padding: 40px; border-radius: 20px;">
+        
+        <div class="account-meta-wrapper" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; margin-bottom: 35px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 25px;">
+            
+            <div style="flex: 1;">
+                <h4 style="font-size: 1.8rem; color: #fff; font-weight: 600; margin-bottom: 12px; letter-spacing: 0.5px;">Ones街舞社社团账号 <span style="font-size: 0.9rem; color: #64748b; font-weight: normal; margin-left: 8px;"></span></h4>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <span style="background: rgba(255, 75, 75, 0.15); color: #ff4b4b; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: 500;">抖音</span>
+                    <span style="background: rgba(255,255,255,0.08); color: #cbd5e1; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem;">粉丝量：5703</span>
+                </div>
+            </div>
+
+            <div style="flex: 1.8; border-left: 2px solid rgba(255,255,255,0.1); padding-left: 25px;">
+                <h5 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px; font-weight: 500; letter-spacing: 1px;">运营策略与成果</h5>
+                <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.7; text-align: justify; margin: 0;">负责校园舞蹈社团账号的整体定位、垂类发布及拍摄指导。打造过多支高互动量的爆款舞蹈视频。<span style="color: rgba(255,255,255,0.3); font-size: 0.85rem; display: block; margin-top: 4px;">🔍 双击下方图片可放大查看详情</span></p>
+            </div>
+        </div>
+
+        <div class="account-images-row" style="display: flex; gap: 16px; width: 100; justify-content: space-between;">
+            <div class="zoomable-thumb" style="flex: 1; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s;"><img src="images/aaccount-preview5.jpg" alt="作品" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div class="zoomable-thumb" style="flex: 1; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s;"><img src="images/aaccount-preview6.jpg" alt="作品" style="width: 100%; height: 100%; object-fit: cover;"></div>
+            <div class="zoomable-thumb" style="flex: 1; aspect-ratio: 3/4; border-radius: 10px; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s;"><img src="images/aaccount-preview7.jpg" alt="作品" style="width: 100%; height: 100%; object-fit: cover;"></div>
+        </div>
+    </div>
+    
+    <div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; cursor: zoom-out;"><img id="modalImg" style="max-width: 90%; max-height: 90%; border-radius: 8px; box-shadow: 0 0 20px rgba(0,0,0,0.5); object-fit: contain;"></div>
+</div>
 </div>
 
-    <div class="portfolio-container" style="max-width: 1000px; margin: 0 auto; padding: 20px;">
-    
-        <div class="portfolio-group short-film drama" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《房间》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116380879815419&bvid=BV1JbQPB6EpY&cid=37397070099&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
+            <div class="portfolio-group photography hide">
+                <div class="photo-slider-wrapper">
+                    <div class="slider-arrow arrow-left" id="slideLeft">&lt;</div>
+                    
+                    <div class="slider-container" id="photoSlider">
+                        <div class="slide-item active"><img src="images/photo1.jpg" alt="摄影1"></div>
+                        <div class="slide-item"><img src="images/photo3.jpg" alt="摄影3"></div>
+                        <div class="slide-item"><img src="images/photo4.jpg" alt="摄影4"></div>
+                        <div class="slide-item"><img src="images/photo2.jpg" alt="摄影2"></div>
+                        <div class="slide-item"><img src="images/photo5.jpg" alt="摄影5"></div>
+                        <div class="slide-item"><img src="images/photo6.jpg" alt="摄影6"></div>
+                        <div class="slide-item"><img src="images/photo7.jpg" alt="摄影7"></div>
+                        <div class="slide-item"><img src="images/photo8.jpg" alt="摄影8"></div>
+                        <div class="slide-item"><img src="images/photo9.jpg" alt="摄影9"></div>
+                    </div>
+                    
+                    <div class="slider-arrow arrow-right" id="slideRight">&gt;</div>
+                </div>
             </div>
+
+            <div class="portfolio-group script hide">
+                <div class="script-card frosted-glass">
+                    <details>
+                        <summary class="script-cover">
+                            <div class="cover-content">
+                                <span class="script-tag">短剧剧本</span>
+                                <h3 class="script-title">《小僵尸》</h3>
+                                <p class="script-theme">“隐居都市处理灵异事件的九叔师徒，为送小僵尸与生父团聚而卷入一场豪门阴谋。”</p>
+                                <div class="expand-hint">点击查看剧本策划详情 ⬇️</div>
+                            </div>
+                        </summary>
+                        <div class="script-detail">
+                            <h4>一、 故事梗概</h4>
+                            <p>某老街道外区，九叔带着徒弟秋生、文才以萨满古法处理灵异怪谈...</p>
+                            <h4>二、 人物小传</h4>
+                            <p><strong>九叔（60岁）：</strong>老萨满...</p>
+                            <h4>三、 正片试读</h4>
+                            <div class="script-text">2. 林氏问事堂 夜 内...</div>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="script-card frosted-glass">
+                    <details>
+                        <summary class="script-cover">
+                            <div class="cover-content">
+                                <span class="script-tag">短片剧本</span>
+                                <h3 class="script-title">《房间》</h3>
+                                <p class="script-theme">“一对男女醒来后被困陌生房间，发现自己也随之失忆，而生的出口只容一人通过。”</p>
+                                <div class="expand-hint">点击查看剧本策划详情 ⬇️</div>
+                            </div>
+                        </summary>
+                        <div class="script-detail">
+                            <h4>一、 故事梗概</h4>
+                            <p>一对失去记忆的男女突然在封闭的房间中醒来...</p>
+                            <h4>三、 正片试读</h4>
+                            <div class="script-text">2. 房间 夜 内...</div>
+                        </div>
+                    </details>
+                </div>
+
+                <div class="script-card frosted-glass" style="margin-top: 40px; padding: 40px 60px; position: relative;">
+    <div class="cover-content">
+        <span class="script-tag" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255,255,255,0.2);">综艺策划</span>
+        <h3 class="script-title">《烘燃心动》</h3>
+        <p class="script-theme" style="margin-bottom: 25px;">“温情治愈系竞技真人秀，强调“手艺传递温度，食物连接人心”。”</p>
+        
+        <div class="show-slider-wrapper" style="position: relative; width: 100%; margin: 0 auto;">
+            <div class="slider-arrow arrow-left" id="showSlideLeft" style="left: -45px; width: 40px; height: 40px; font-size: 1.2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">&lt;</div>
+            
+            <div id="showSlider" class="font-book-slider" style="display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; gap: 20px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 10px 0 !important; scroll-behavior: smooth; scrollbar-width: none;">
+    
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page1.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page2.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page3.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page4.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page5.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page6.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page7.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page8.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page9.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page10.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page11.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page12.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page13.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page14.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page15.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <div class="preview-page zoomable-thumb" style="flex: 0 0 48% !important; max-width: 48% !important; aspect-ratio: 16/9 !important; border-radius: 8px !important; overflow: hidden; background: rgba(0,0,0,0.2); cursor: pointer;">
+        <img src="images/show-page16.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+
+</div>
+            
+            <div class="slider-arrow arrow-right" id="showSlideRight" style="right: -15px; width: 40px; height: 35px; font-size: 1.2rem;">&gt;</div>
+        </div>
+</div>
+
         </div> 
-
-        <div class="portfolio-group short-film drama" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《Layers of Fear》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114161421911445&bvid=BV1vsQkY7E5E&cid=28866053592&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group short-film drama" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《直球男神的秘密》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115808860701247&bvid=BV19wvvBrE6h&cid=35082340133&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group short-film documentary" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《耕新》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116712213055430&bvid=BV1TzEK61EuW&cid=38946800371&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group short-film documentary" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《小城记忆》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114161421910202&bvid=BV1vsQkY7EtX&cid=28866121380&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group short-film documentary" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《簪花围》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114161405134055&bvid=BV1exQkY2Exd&cid=28865856157&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group short-film documentary" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《大地丹青》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115730309710485&bvid=BV1sdqeBYEQ4&cid=34783166846&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group short-film commercial" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《可心柔》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=115730326488112&bvid=BV1xRqeBPEgJ&cid=34783167933&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group aigc hide" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">AIGC MV：《DELULU》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116874280961102&bvid=BV1u3Td6ZEGk&cid=39713050502&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-
-        <div class="portfolio-group aigc hide" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《oc》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116712263387814&bvid=BV1WPEK6zEJA&cid=38947127703&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-    
-        <div class="portfolio-group aigc hide" style="margin-bottom: 60px;">
-            <h3 style="margin-bottom: 20px; color: #fff; font-weight: 500; text-align: left;">《multiverse》</h3>
-            <div class="video-wrapper frosted-glass" style="max-width: 900px; margin: 0 auto;">
-                <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116712263386673&bvid=BV1WPEK6zEzv&cid=38946998344&p=1&high_quality=1&as_html5=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts" style="width: 100%; aspect-ratio: 16 / 9;"></iframe>
-            </div>
-        </div>
-    </div>
-</section>
-               
-       <div class="portfolio-group script hide">
-    
-    <div class="script-card frosted-glass">
-        <details>
-            <summary class="script-cover">
-                <div class="cover-content">
-                    <span class="script-tag">短剧剧本</span>
-                    <h3 class="script-title">《小僵尸》</h3>
-                    <p class="script-theme">“隐居都市处理灵异事件的九叔师徒，为送小僵尸与生父团聚而卷入一场豪门阴谋。”</p>
-                    <div class="expand-hint">点击查看剧本策划详情 ⬇️</div>
-                </div>
-            </summary>
-            
-            <div class="script-detail">
-                <h4>一、 故事梗概</h4>
-                <p>某老街道外区，九叔带着徒弟秋生、文才以萨满古法处理灵异怪谈。小僵尸是十五年前被遗弃在店门口的婴孩，九叔将他收留，四人早已是不可分割的家人。
-某日，富商林天泽派人登门，声称小僵尸是他失散多年的亲生骨肉，并承诺能让他如常人般站在阳光下。九叔犹豫再三，最终决定亲自护送小僵尸前往长白山脚下的林氏庄园。
-抵达庄园后，林天泽极尽慈爱，小僵尸短暂沉浸于父爱的幻梦中。然而九叔和秋生很快察觉异样——庄园下人的异状、纸飞机无意间勾出的阵法符文，都指向一个阴毒的引魂聚阴阵。真相逐渐浮出水面：四十年前林天泽身患绝症，走投无路之下以散布子嗣、骨肉炼命的邪法为自己续命，数十个亲生孩子的尸骨葬于庄园之下。小僵尸是唯一的意外，被弃养后在九叔身边孕育出了极品法器玲珑心——林天泽引师徒入庄，真实目的是剖心炼药。
-林天泽以生母魂魄为饵诱小僵尸入阵，九叔三人拼死破阵却被击倒。危急关头，小僵尸凭玲珑心感应识破谎言，拒绝献心。林天泽疯狂扑来，小僵尸主动催动玲珑心将其反噬化为飞灰。九叔以送亡神歌超度地下十八个孩子怨灵，小僵尸对他们轻声告别。四人走出庄园，长白山清晨的阳光下，小僵尸呵出了第一口白气——他终于像活人一样呼吸了。师徒四人并排走入阳光，脚印在雪地上向前延伸。</p>
-                
-                <h4>二、 人物小传</h4>
-                <p><strong>九叔（60岁）：</strong> 从业四十余年的关东老萨满，少年时四处讨生活屡屡碰壁，后拜入长白山一支民间萨满门派，成为这一脉最后一位关门弟子。在哈尔滨道外区颇有名望，街坊不管是宅子闹鬼、牲口染病、运道不顺，都来找他问事。九叔定下死规矩：绝不给心存恶念的人办事。</p>
-                <p><strong>小僵尸（15岁）：</strong> 看着七岁，实际十五岁。身形瘦小，面色发青，笑的时候露出两颗虎牙。十五年前被人遗弃在问事堂门口，九叔看出他命不该绝，收了回来。一辈子没出过远门，没去过比道外区更远的地方。平时坐店、吃血肠、装僵尸吓走心怀不轨的客人。</p>
-                <p><strong>文才（22岁）：</strong> 初中迷上灵异论坛，顺着帖子找到店里来。入门最晚，本事最差，贪财怕死嘴上没把门，外出办事时总会躲在师父和秋生身后，打完架抓花生酥塞嘴里。但真到顶不住的时候他没有跑过。</p>
-                <p><strong>秋生（28岁）：</strong> 二十八岁，汉语言文学本科毕业，是老算命先生引荐来拜师的。记性极好，入门七天背完所有神歌咒语和画符口诀，脑子比动手快。平时话不多，不争不抢，但遇到事他是最稳的那一个。</p>
-                <h4>三、 正片试读</h4>
-                <div class="script-text">
-                    2.  林氏问事堂 夜 内
-                    人物：九叔、小僵尸<br><br>
-                    巷子深处，林氏问事堂，门半掩着，亮着明黄色的灯。<br>
-                    △ 来者是个男子，西装笔挺，皮鞋锃亮，手里提着一个黑色公文皮箱，进门的动作很从容，在店里扫了一圈，目光在小僵尸身上停了一秒，移开，落到九叔身上。<br>
-                    △ 男子（点了点头）：九叔，打扰了。<br>
-                    △ 男子径直走到八仙桌前，把皮箱放下，打开，里面是一捆捆红色钞票。同时在桌子上放下一张明信片，附着林氏庄园的地址。文才坐直了，眼睛先瞄到那叠钞票，嘴角往上扬。
-                    △ 男子（慢条斯理）：在下受林天泽林先生所托，寻回当年因故失散的亲生骨肉。据悉，那孩子，一直在您这里。<br>
-                    △ 文才眼睛瞬间瞪圆，侧身撞了一下秋生的胳膊。<br>
-                    △ 文才（压低声音）：孩子……我们这只有小僵尸，莫非是——<br>
-                    △秋生抬手按住他的头，把他整个人往旁边推开。<br>
-                    △九叔（放下茶杯）：林先生是何许人？<br>
-                    △西装男：林氏集团创始人，因身体缘故已隐居多年。林先生只记得孩子出生时面青，其余一概不知，寻访多年，近日才有了线索。<br>
-                    △九叔（看了一眼小僵尸）：失散，还是弃养？<br>
-                    △男子顿了一下。林先生说，当年情况复杂，他日当面向您解释。<br>
-                    △小僵尸（歪头，看了看九叔，又看了看西装男）：爹……是什么？<br>
-                    △店里安静了一瞬。九叔看着他，没有回答。<br>
-                    △小僵尸（低头想了一下）：九叔，别人的小孩都有爹吗？就是……那种会来接他们走的？<br>
-                    △九叔（看了他片刻，把皮箱推回去）：不接。<br>
-                    △文才在旁边谄媚地笑着，手伸出去一半，被九叔眼神一扫，悻悻缩回来。小僵尸坐回收银台的椅子上，低下头，手指抠着桌沿的一道缝。<br>
-                    △男子合拢皮箱，唯独没收起那张名片，走到门槛处停下来，转过身。<br>
-                    △男子（轻描淡写）：这孩子的情况，你我都心知肚明。形似僵尸，不为社会所容。你想让他在这儿苟活一辈子吗？（停了一下）林先生说，他有法子，能让那孩子重见天日。真正地，站到太阳底下去。还希望您考虑清楚。<br>
-                    
-                </div>
-            </div>
-        </details>
-    </div>
-    <div class="script-card frosted-glass">
-        <details>
-            <summary class="script-cover">
-                <div class="cover-content">
-                    <span class="script-tag">短片剧本</span>
-                    <h3 class="script-title">《房间》</h3>
-                    <p class="script-theme">“一对男女醒来后被困陌生房间，发现自己也随之失忆，而生的出口只容一人通过。”</p>
-                    <div class="expand-hint">点击查看剧本策划详情 ⬇️</div>
-                </div>
-            </summary>
-            
-            <div class="script-detail">
-                <h4>一、 故事梗概</h4>
-                <p>一对失去记忆的男女突然在封闭的房间中醒来，面对电脑屏幕上“只有一个人能活着走出房间”的生死倒计时规则，两人从最初的和平防备演变为激烈的互相残杀。在殊死搏斗中，女人用围巾将男人勒死，然而当门终于打开、阳光照进来的一瞬间，女人恢复了记忆，惊恐而绝望地发现被自己亲手杀死的陌生男人正是自己的爱人。</p>
-                
-                <h4>二、 人物小传</h4>
-                <p><strong>男人（22岁）：</strong> 在校大学生，理智隐忍，格外看重恋人，生死关头会优先保全自身与心中牵挂，行事果决甚至不择手段。</p>
-                <p><strong>女人（20岁）：</strong> 天性温柔心软，心存善意，遇事总抱有转机幻想，不到绝境不会主动选择伤害他人。</p>
-               
-                <h4>三、 正片试读</h4>
-                <div class="script-text">
-                    2.  房间 夜 内
-                    人物：男人、女人<br><br>
-                    △ 冰冷的电子倒计时显示还剩 03:00。之前的短暂和平已荡然无存。<br>
-                    △ 男生（停止了无意义的踱步，站在房间中央，目光沉沉地看向女生）：时间不多了。<br>
-                    △ 女人（抱着双臂，紧盯着倒计时）：我知道……一定还有我们没找到的漏洞，规则不可能这么绝对。<br>
-                    △ 男人（打断她，声音冷静得可怕）：没有漏洞，我看明白了，这就是一场你死我活的游戏。<br>
-                    △ 女人（难以置信地看向他）：为了自己活命，去杀死一个无辜的人？<br>
-                    △ 男人（嘴角扯出一抹讥讽的笑）：无辜？在这里，只有活着出去和变成尸体，我的爱人还在外面等我，我答应过她，无论如何都会回去。我不能死在这里。<br>
-                    △女人（情绪激动起来）：谁不是呢？！我的记忆里也只有他！如果我死在这里，他怎么办？他会永远不知道我去了哪里！<br>
-                    △男人（向前逼近一步，眼神锐利）：那就更说明我们都没得选。你的爱人在等你，我的爱人在等我。但我们之间，素不相识。为了等待我们的人，我们必须让一个“陌生人”牺牲。这很合理。<br>
-                    △女人（摇头，步步后退）：不，这不合理！我们可以一起想办法……<br>
-                    △男人（厉声喝道）：别再自欺欺人了！（他指着房间唯一的门）那扇门，只会在一个人活着的时候打开！这是唯一的办法！你的犹豫，只会让我们两个都死在这里！<br>
-                    △女人（被他的话刺中，眼神出现挣扎）：我……<br>
-                    △男人（语气稍缓，但带着不容置疑的决绝）：我也不想这样。但我必须回去。所以……对不起。<br>
-                    </div>
-            </div>
-        </details>
-    </div>
-   <div class="script-card frosted-glass" style="margin-top: 40px;">
-    <details>
-        <summary class="script-cover">
-            <div class="cover-content">
-                <span class="script-tag" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255,255,255,0.2);">综艺策划</span>
-                <h3 class="script-title">《烘燃心动》</h3>
-                <p class="script-theme">“温情治愈系竞技真人秀，强调“手艺传递温度，食物连接人心”。”</p>
-                
-                <div class="pdf-preview-row font-book-slider" style="display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; gap: 20px !important; width: 100% !important; max-width: 100% !important; box-sizing: border-box !important; padding: 10px 0 !important; scroll-snap-type: x mandatory !important; scroll-behavior: smooth !important; -webkit-overflow-scrolling: touch;">
-                    
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page1.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page2.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page3.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page4.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page5.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page6.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page7.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page8.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page9.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page10.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page11.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page12.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page13.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page14.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page15.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-                    <div class="preview-page" style="flex: 0 0 50% !important; max-width: 50% !important; aspect-ratio: 3/4 !important; border-radius: 12px !important; overflow: hidden !important; background: rgba(0,0,0,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.05); scroll-snap-align: start !important;">
-                        <img src="images/show-page16.jpg" style="width: 100% !important; height: 100% !important; object-fit: contain !important;">
-                    </div>
-
-                </div>
-
-                <div class="expand-hint">左右滑动阅览方案</div>
-            </div>
-        </summary>
-
-            
-            <div class="script-detail">
-                <h4>一、 核心策划信息</h4>
-                <p><strong>节目类型：</strong> 实景剧情生存推理真人秀 / 虚拟硬核竞技</p>
-                <p><strong>受众定位：</strong> 16-35岁 剧本杀、科幻、硬核游戏爱好者及年轻潮流群体</p>
-                <p><strong>拟邀嘉宾：</strong> 一线顶流智商担当艺人 + 头部电竞战队选手 + 科技圈头部KOL</p>
-                
-                <h4>二、 核心看点（核心赛制）</h4>
-                <p>引入全真全息光影技术，每一期节目将在不同的“时空碎片”中展开。嘉宾不仅需要面对实景猎人的抓捕，还需要通过AR眼镜破解隐藏在赛场各个角落的数字谜题。</p>
-                
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="pdf/show-plan.pdf" target="_blank" class="download-pdf-btn">
-                        📄 阅读/下载完整版策划案 PDF 文档
-                    </a>
-                </div>
-            </div>
-        </details>
-    </div>
-    
-                    
-                </div>
-            </div>
-        </details>
-    </div>
-
-    </div>
-
-    </div>
-</section>
-        </div>
-
-       <div class="portfolio-group photography hide">
-    
-    <div class="slider-container">
-    
-        <div class="slide-item active">
-            <img src="images/photo1.jpg" alt="摄影作品1">
-        </div>
-
-        <div class="slide-item">
-            <img src="images/photo3.jpg" alt="摄影作品3">
-        </div>
-
-        <div class="slide-item">
-            <img src="images/photo4.jpg" alt="摄影作品4">
-        </div>
-
-        <div class="slide-item">
-            <img src="images/photo2.jpg" alt="摄影作品2">
-        </div>
-
-        <div class="slide-item">
-            <img src="images/photo5.jpg" alt="摄影作品5">
-        </div>
-
-        <div class="slide-item">
-            <img src="images/photo7.jpg" alt="摄影作品7">
-        </div>
-
-        <div class="slide-item">
-            <img src="images/photo8.jpg" alt="摄影作品8">
-        </div>
-
-    </div> </div> ```
-</div>
-        </div>
     </section>
 
-<script>
-    // 强行延迟 0.5 秒执行，等页面所有元素和样式彻底加载完
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        // 1. 尝试寻找带有“剧情”文字的按钮
-        const buttons = document.querySelectorAll('button, .tab-button, .category-btn');
-        let dramaButton = null;
-        
-        buttons.forEach(btn => {
-            if (btn.textContent.includes('剧情')) {
-                dramaButton = btn;
-            }
-        });
-
-        // 2. 如果找到了，就自动点一下它
-        if (dramaButton) {
-            dramaButton.click();
-            console.log("已自动触发剧情片分类点击");
-        } else {
-            // 3. 备用方案：如果没有“剧情”按钮，就自动点第一个按钮
-            const firstButton = document.querySelector('button');
-            if (firstButton) firstButton.click();
-        }
-    }, 500); // 500毫秒 = 0.5秒
-});
-// 1. 获取所有的标签按钮和作品盒子
-    const tabs = document.querySelectorAll('.tab-btn');
-    const groups = document.querySelectorAll('.portfolio-group');
-
-    // 2. 为每个标签按钮绑定点击事件
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // ① 移除所有按钮的 active 状态，给当前点击的按钮加上 active
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            // ② 获取当前点击的分类标识（如 "short-film", "aigc", "photography"）
-            const targetCategory = tab.getAttribute('data-target');
-
-            // ③ 核心修复：遍历【所有】作品盒子，只要包含目标类名，就【全部】解除隐藏
-            groups.forEach(group => {
-                if (group.classList.contains(targetCategory)) {
-                    group.classList.remove('hide'); // 解除隐藏（显示）
-                } else {
-                    group.classLists ? group.classList.add('hide') : group.classList.add('hide'); // 隐藏其他分类
-                }
-            });
-
-            // ④ 特殊优化：如果切换到了摄影作品，触发滑窗居中计算（防止照片错位）
-            if (targetCategory === 'photography' && typeof updateActiveSlide === 'function') {
-                setTimeout(updateActiveSlide, 50);
-            }
-        });
-    });
-
-    // ====================================================
-    // 📸 如果你之前写的摄影作品滑窗 JS 还在，请保持在下面不动：
-    // ====================================================
-   // 2. 摄影作品【滚动视差与居中放大】的计算逻辑
-        const container = document.querySelector('.slider-container');
-        const items = document.querySelectorAll('.slide-item');
-
-        function updateActiveSlide() {
-            if (!container) return; 
-            const containerCenter = container.getBoundingClientRect().left + container.offsetWidth / 2;
-            items.forEach(item => {
-                const itemCenter = item.getBoundingClientRect().left + item.offsetWidth / 2;
-                const distance = Math.abs(containerCenter - itemCenter);
-                if (distance < 200) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-        }
-
-        if (container) {
-            container.addEventListener('scroll', updateActiveSlide);
-        }
-        
-        window.addEventListener('load', () => {
-            if (typeof updateActiveSlide === 'function') setTimeout(updateActiveSlide, 100);
-        });
-// ==================== 二级分类切换逻辑 ====================
-document.querySelectorAll('.sub-tab-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // 1. 切换按钮的高亮样式
-        document.querySelectorAll('.sub-tab-btn').forEach(b => {
-            b.classList.remove('active');
-            b.style.background = 'transparent';
-            b.style.color = '#aaa';
-            b.style.border = '1px solid rgba(255,255,255,0.1)';
-        });
-        this.classList.add('active');
-        this.style.background = 'rgba(255,255,255,0.1)';
-        this.style.color = '#fff';
-        this.style.border = '1px solid rgba(255,255,255,0.2)';
-
-        // 2. 获取当前点击的二级分类目标 (drama / documentary / commercial)
-        const subTarget = this.getAttribute('data-sub-target');
-
-        // 3. 过滤并显示对应的短片盒子
-        document.querySelectorAll('.portfolio-group.short-film').forEach(item => {
-            if (item.classList.contains(subTarget)) {
-                item.classList.remove('hide'); // 显示匹配的分类
-                item.style.display = 'block';  // 确保可见
-            } else {
-                item.classList.add('hide');    // 隐藏其他二级分类
-                item.style.display = 'none';
-            }
-        });
-    });
-});
-
-// ==================== 联动优化（一二级导航配合） ====================
-// 当用户点击一级菜单（如从“短片”切到“AIGC”，或切回来）时，控制二级菜单的生死
-document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const mainTarget = this.getAttribute('data-target');
+    <script>
+        // 大分类切换交互
+        const tabBtns = document.querySelectorAll('.tab-btn');
         const subNav = document.querySelector('.short-film-sub');
-        
-        if (subNav) {
-            if (mainTarget === 'short-film') {
-                subNav.style.display = 'flex'; // 切回短片作品时，显示二级菜单
-                // 默认触发一次“剧情片”点击，防止界面显示空白或错乱
-                document.querySelector('.sub-tab-btn[data-sub-target="drama"]').click();
-            } else {
-                subNav.style.display = 'none'; // 切到AIGC、摄影等大类时，把短片二级菜单藏起来
-            }
+        const groups = document.querySelectorAll('.portfolio-group');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const target = btn.getAttribute('data-target');
+
+                if (target === 'short-film') {
+                    subNav.style.display = 'flex';
+                } else {
+                    subNav.style.display = 'none';
+                }
+
+                groups.forEach(group => {
+                    if (group.classList.contains(target)) {
+                        if (target === 'short-film') {
+                            const activeSubTarget = document.querySelector('.sub-tab-btn.active').getAttribute('data-sub-target');
+                            if (group.classList.contains(activeSubTarget)) {
+                                group.classList.remove('hide');
+                            } else {
+                                group.classList.add('hide');
+                            }
+                        } else {
+                            group.classList.remove('hide');
+                        }
+                    } else {
+                        group.classList.add('hide');
+                    }
+                });
+            });
+        });
+
+        // 视频二级菜单切换交互
+        const subTabBtns = document.querySelectorAll('.sub-tab-btn');
+        subTabBtns.forEach(subBtn => {
+            subBtn.addEventListener('click', () => {
+                subTabBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.style.background = 'transparent';
+                    b.style.color = '#aaa';
+                });
+                subBtn.classList.add('active');
+                subBtn.style.background = 'rgba(255,255,255,0.1)';
+                subBtn.style.color = '#fff';
+
+                const subTarget = subBtn.getAttribute('data-sub-target');
+                groups.forEach(group => {
+                    if (group.classList.contains('short-film')) {
+                        if (group.classList.contains(subTarget)) {
+                            group.classList.remove('hide');
+                        } else {
+                            group.classList.add('hide');
+                        }
+                    }
+                });
+            });
+        });
+
+        // 摄影横向滑动按钮控制
+        const photoSlider = document.getElementById('photoSlider');
+        const slideLeft = document.getElementById('slideLeft');
+        const slideRight = document.getElementById('slideRight');
+
+        if(photoSlider && slideLeft && slideRight) {
+            slideLeft.addEventListener('click', () => {
+                photoSlider.scrollBy({ left: -400, behavior: 'smooth' });
+            });
+            slideRight.addEventListener('click', () => {
+                photoSlider.scrollBy({ left: 400, behavior: 'smooth' });
+            });
         }
+         // 图片放大查看交互逻辑
+        
+        // 图片放大查看交互逻辑
+const thumbs = document.querySelectorAll('.zoomable-thumb img');
+const modal = document.getElementById('imageModal');
+const modalImg = document.getElementById('modalImg');
+
+if (thumbs && modal && modalImg) {
+    thumbs.forEach(img => {
+        // 这里使用 dblclick 监听双击事件，如果你想单击就放大，可以改成 'click'
+        img.addEventListener('dblclick', () => {
+            modalImg.src = img.src; // 将大图路径设置为当前点击的图片路径
+            modal.style.display = 'flex'; // 显示遮罩层
+        });
     });
-});
 
-</script>
+    // 点击遮罩层任意地方关闭大图
+    modal.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+}
+ // ====== 1. 《烘燃心动》图片横向滑动按钮控制 ======
+const showSlider = document.getElementById('showSlider');
+const showSlideLeft = document.getElementById('showSlideLeft');
+const showSlideRight = document.getElementById('showSlideRight');
 
-    </body>
+if (showSlider && showSlideLeft && showSlideRight) {
+    // 💡 额外确保箭头绝对可见（不被图片挡住）
+    showSlideLeft.style.zIndex = "10";
+    showSlideRight.style.zIndex = "10";
+
+    showSlideLeft.addEventListener('click', () => {
+        showSlider.scrollBy({ left: -400, behavior: 'smooth' }); // 加大滚动距离，体验更好
+    });
+    showSlideRight.addEventListener('click', () => {
+        showSlider.scrollBy({ left: 400, behavior: 'smooth' });
+    });
+}
+    </script>
+</body>
 </html>
